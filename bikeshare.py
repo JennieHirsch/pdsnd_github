@@ -94,31 +94,39 @@ def time_stats(df, month, day):
 
     # display the most common month
     
-    if month == 'all':
-        month_counts = df['month'].value_counts()
-        popular_month = month_counts.index[0]
-        popular_month_count = month_counts[popular_month]
-        popular_month_name = datetime.date(2020, popular_month, 1).strftime('%B')
-        print("\nThe most popular month to travel is {} with a total of {} trips.".format(popular_month_name, popular_month_count))
-
+    month_counts = df['month'].value_counts()
+    popular_month = month_counts.index[0]
+    popular_month_count = month_counts[popular_month]
+    popular_month_name = datetime.date(2020, popular_month, 1).strftime('%B')  
     
     # display the most common day of week
 
-    if day == 'all':
-        day_counts = df['day_of_week'].value_counts()
-        popular_day = day_counts.index[0]
-        popular_day_count = day_counts[popular_day]
-        print("\nThe most popular day to travel is {} with a total of {} trips.".format(popular_day, popular_day_count))
-
+    day_counts = df['day_of_week'].value_counts()
+    popular_day = day_counts.index[0]
+    popular_day_count = day_counts[popular_day]
     
     #  display the most common start hour
 
     hour_counts = df['hour'].value_counts()
     popular_hour = hour_counts.index[0]
     popular_hour_count = hour_counts[popular_hour]
-        
-    print("\nThe most popular hour to start travel is {} with a total of {} trips.".format(popular_hour, popular_hour_count))    
-    
+            
+    #print messages
+
+    if (day == 'all') and (month == 'all'):
+        print("\nThe most popular month to travel is {} with a total of {} trips.".format(popular_month_name, popular_month_count))
+        print("\nThe most popular day to travel is {} with a total of {} trips.".format(popular_day, popular_day_count))
+        print("\nThe most popular hour to start travel is {} with a total of {} trips.".format(popular_hour, popular_hour_count))    
+    elif day == 'all':
+        print("\nThe most popular day to travel is {} with a total of {} trips.".format(popular_day, popular_day_count))
+        print("\nThe most popular hour to start travel is {} with a total of {} trips.".format(popular_hour, popular_hour_count))
+    elif month == 'all':
+        print("\nThe most popular month to travel is {} with a total of {} trips.".format(popular_month_name, popular_month_count))
+        print("\nThe most popular hour to start travel is {} with a total of {} trips.".format(popular_hour, popular_hour_count))
+    else:
+        print("\nThe most popular hour to start travel is {} with a total of {} trips.".format(popular_hour, popular_hour_count))
+
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -135,8 +143,6 @@ def station_stats(df):
     common_start_station = start_station_counts.index[0]
     common_start_station_count = start_station_counts[common_start_station]
     
-    print("\nThe most common station to start a trip is {} with a total of {} trips.".format(common_start_station, common_start_station_count))    
-
 
     #  display most commonly used end station
 
@@ -144,6 +150,7 @@ def station_stats(df):
     common_end_station = end_station_counts.index[0]
     common_end_station_count = end_station_counts[common_end_station]
     
+    print("\nThe most common station to start a trip is {} with a total of {} trips.".format(common_start_station, common_start_station_count))    
     print("\nThe most common destination station is {} with a total of {} trips.".format(common_end_station, common_end_station_count))
         
 
@@ -194,11 +201,12 @@ def user_stats(df,city):
 
     # Display counts of gender
     
-    if city != 'washington':
-          gender_counts = df['Gender'].value_counts()
-          print("\nHere is the trip breakdown by gender:\n{}".format(gender_counts))
-
-
+    try:
+        gender_counts = df['Gender'].value_counts()
+        print("\nHere is the trip breakdown by gender:\n{}".format(gender_counts))
+    except:
+        print("")
+    
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
