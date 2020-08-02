@@ -143,8 +143,6 @@ def station_stats(df):
     common_start_station = start_station_counts.index[0]
     common_start_station_count = start_station_counts[common_start_station]
     
-    print("\nThe most common station to start a trip is {} with a total of {} trips.".format(common_start_station, common_start_station_count))    
-
 
     #  display most commonly used end station
 
@@ -152,6 +150,7 @@ def station_stats(df):
     common_end_station = end_station_counts.index[0]
     common_end_station_count = end_station_counts[common_end_station]
     
+    print("\nThe most common station to start a trip is {} with a total of {} trips.".format(common_start_station, common_start_station_count))    
     print("\nThe most common destination station is {} with a total of {} trips.".format(common_end_station, common_end_station_count))
         
 
