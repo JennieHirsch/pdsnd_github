@@ -201,11 +201,12 @@ def user_stats(df,city):
 
     # Display counts of gender
     
-    if city != 'washington':
-          gender_counts = df['Gender'].value_counts()
-          print("\nHere is the trip breakdown by gender:\n{}".format(gender_counts))
-
-
+    try:
+        gender_counts = df['Gender'].value_counts()
+        print("\nHere is the trip breakdown by gender:\n{}".format(gender_counts))
+    except:
+        print("")
+    
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
