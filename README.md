@@ -5,7 +5,7 @@
 Jennie's Bike Share Project
 
 ### Description
-Describe what your project is about and what it does
+This project loads data on bike trips in Chicago, Washington, and New York City. It filters the data based on user prompts, shows summary statistics on the filtered data and has the option to display lines of raw data at the end.
 
 ### Files used
 Include the files used
